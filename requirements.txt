@@ -1,7 +1,7 @@
-Django
-django-cors-headers
-django-filter
-djangorestframework
-Markdown
-PyYAML
+Django==4.1.3
+django-cors-headers==3.13.0
+django-filter==22.1
+djangorestframework==3.14.0
+Markdown==3.4.1
+PyYAML==6.0
 requests
