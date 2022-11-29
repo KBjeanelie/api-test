@@ -1,17 +1,14 @@
 from rest_framework import serializers
 
-from .models import Livre
+from .models import Category, Livre
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
 
 class LivreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Livre
-        fields = [
-            'id',
-            'category',
-            'titre',
-            'auteur',
-            'nombreDePage',
-            'description',
-            'prix',
-            'created_at',
-            'updated_at']
+        fields = '__all__'
