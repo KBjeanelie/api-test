@@ -13,7 +13,7 @@ class Category(models.Model):
 class Livre(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="livre",
                                  verbose_name="Project's category")
-    nom = models.CharField(max_length=50)
+    titre = models.CharField(max_length=50)
     auteur = models.CharField(max_length=50)
     nombreDePage = models.IntegerField()
     description = models.TextField(blank=True)
