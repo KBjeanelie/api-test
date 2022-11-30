@@ -1,32 +1,68 @@
-from rest_framework import mixins
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, authentication
 from .models import Category, Livre
 
 from .serializers import CategorySerializer, LivreSerializer
 # Create your views here.
 
-class LivreListCreate(mixins.ListModelMixin,
-                  mixins.CreateModelMixin,
-                  generics.GenericAPIView):
+"""
+Ceci sont les vue concernant les category
+"""
+class CategoryCreateView(generics.CreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAdminUser]
+    
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+class CategoryListView(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+class CategoryRetrieveView(generics.RetrieveAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAdminUser]
+
+
+
+class CategoryUpdateView(generics.UpdateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAdminUser]
+
+class CategoryDeleteView(generics.DestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAdminUser]
+
+
+
+"""
+Ceci sont les vue concernant les Livre
+"""
+class LivreCreateView(generics.CreateAPIView):
     queryset = Livre.objects.all()
     serializer_class = LivreSerializer
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
 
-class CategoryListCreate(mixins.ListModelMixin,
-                  mixins.CreateModelMixin,
-                  generics.GenericAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-    # permission_classes = [permissions.IsAdminUser]
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
+class LivreListView(generics.ListAPIView):
+    queryset = Livre.objects.all()
+    serializer_class = LivreSerializer
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+class LivreRetrieveView(generics.RetrieveAPIView):
+    queryset = Livre.objects.all()
+    serializer_class = LivreSerializer
 
+
+
+class LivreUpdateView(generics.UpdateAPIView):
+    queryset = Livre.objects.all()
+    serializer_class = LivreSerializer
+    
+
+class LivreDeleteView(generics.DestroyAPIView):
+    queryset = Livre.objects.all()
+    serializer_class = LivreSerializer
